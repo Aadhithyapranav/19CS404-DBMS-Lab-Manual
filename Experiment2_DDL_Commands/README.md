@@ -105,123 +105,239 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
 
 ```sql
--- Paste your SQL code below for Question 1
+create table Department(
+    DepartmentID INTEGER primary key,
+    DepartmentName text unique not null,
+    Location text
+);
 ```
 
 **Output:**
 
 ![Output1](output.png)
+<img width="1710" height="511" alt="image" src="https://github.com/user-attachments/assets/7c4dbd91-e31a-4f62-9894-23aa62296fed" />
+
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+
+Write a SQL query to add a column named Date_of_birth as Date in the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 2
+
+ALTER TABLE Student_details
+ADD COLUMN Date_of_birth Date;
+
 ```
 
 **Output:**
 
 ![Output2](output.png)
+<img width="1231" height="401" alt="image" src="https://github.com/user-attachments/assets/2fafea34-3035-46eb-8f83-f5a41e539f6e" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+
+Create a table named Employees with the following columns:
+
+EmployeeID as INTEGER
+FirstName as TEXT
+LastName as TEXT
+HireDate as DATE
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Employees (
+    EmployeeID INTEGER,
+    FirstName TEXT,
+    LastName TEXT,
+    HireDate DATE
+);
+
 ```
 
 **Output:**
 
 ![Output3](output.png)
+<img width="1212" height="348" alt="image" src="https://github.com/user-attachments/assets/7b0103b1-2026-4c5a-acc0-98a46e13161a" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+
+In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 ```sql
--- Paste your SQL code below for Question 4
+
+INSERT INTO Products (ProductID, Name, Category) 
+VALUES (106, 'Fitness Tracker', 'Wearables');
+
+INSERT INTO Products (ProductID, Name, Category, Price, Stock) 
+VALUES (107, 'Laptop', 'Electronics', 999.99, 50);
+
+INSERT INTO Products (ProductID, Name, Category, Stock) 
+VALUES (108, 'Wireless Earbuds', 'Accessories', 100);
+
 ```
 
 **Output:**
 
 ![Output4](output.png)
+<img width="1188" height="237" alt="image" src="https://github.com/user-attachments/assets/97e3060b-b687-4088-a685-fe3592325770" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
 
 ```sql
--- Paste your SQL code below for Question 5
+
+CREATE TABLE contacts (
+    contact_id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT NOT NULL CHECK (LENGTH(phone) >= 10)
+);
+
 ```
 
 **Output:**
 
 ![Output5](output.png)
+<img width="1232" height="306" alt="image" src="https://github.com/user-attachments/assets/b2e6ccf5-a10d-4886-9d39-566668144c8b" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
 
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 ```sql
--- Paste your SQL code below for Question 6
+
+CREATE TABLE Shipments (
+    ShipmentID INTEGER PRIMARY KEY,
+    ShipmentDate DATE,
+    SupplierID INTEGER,
+    OrderID INTEGER,
+    FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
 ```
 
 **Output:**
 
 ![Output6](output.png)
+<img width="1167" height="252" alt="image" src="https://github.com/user-attachments/assets/e00d53fe-3669-4493-9749-3f89876be006" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 7
+
+CREATE TABLE item (
+    item_id TEXT PRIMARY KEY,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT CHECK(LENGTH(icom_id) = 4),
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
 ```
 
 **Output:**
 
 ![Output7](output.png)
+<img width="1187" height="393" alt="image" src="https://github.com/user-attachments/assets/e85ab1ba-a49e-413b-9d62-d8e5796661b8" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 8
+
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, MARKS)
+VALUES (201, 'David Lee', 'M', 'Physics', 92);
+
 ```
 
 **Output:**
 
 ![Output8](output.png)
+<img width="1217" height="300" alt="image" src="https://github.com/user-attachments/assets/d3985e36-cde7-49ec-9115-f519783b86a0" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+
+Insert all products from Discontinued_products into Products.
+
+Table attributes are ProductID, ProductName, Price, Stock
 
 ```sql
--- Paste your SQL code below for Question 9
+
+INSERT INTO Products (ProductID, ProductName, Price, Stock)
+SELECT ProductID, ProductName, Price, Stock
+FROM Discontinued_products;
+
 ```
 
 **Output:**
 
 ![Output9](output.png)
+<img width="1186" height="337" alt="image" src="https://github.com/user-attachments/assets/1f05b464-cd39-4266-8f65-f172026839f5" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+
+Write a SQL query to Add a new column Country as text in the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 10
+
+ALTER TABLE Student_details
+ADD COLUMN Country TEXT;
+
 ```
 
 **Output:**
 
 ![Output10](output.png)
+<img width="1228" height="402" alt="image" src="https://github.com/user-attachments/assets/a0421e80-ab9f-445a-9318-21d367c70f78" />
+
+**COMPLETION STATUS:**
+<img width="1713" height="377" alt="image" src="https://github.com/user-attachments/assets/45e8b215-8fe3-41ec-8a5c-d5499e30d52f" />
+
 
 
 ## RESULT
