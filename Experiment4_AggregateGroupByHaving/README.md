@@ -38,123 +38,189 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+How many patients have expired insurance coverage for each insurance company?
+
+Sample table:Insurance Table
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT
+    InsuranceCompany,
+    COUNT(*) AS TotalExpiredPatients
+    FROM Insurance
+    WHERE ValidityPeriod < CURRENT_DATE
+    GROUP BY InsuranceCompany
 ```
 
 **Output:**
 
-![Output1](output.png)
+
+<img width="944" height="810" alt="Screenshot 2025-10-25 082730" src="https://github.com/user-attachments/assets/712f4a5e-e1cb-4447-a87d-86d1d81d6984" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+How many medical records were created in each month?
+
+Sample table:MedicalRecords Table
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT 
+    strftime('%Y-%m',Date) AS Month,
+    COUNT(RecordID) AS TotalRecords 
+FROM MedicalRecords 
+GROUP BY Month
+ORDER BY Month; 
 ```
 
 **Output:**
 
-![Output2](output.png)
+
+<img width="768" height="458" alt="Screenshot 2025-10-25 082912" src="https://github.com/user-attachments/assets/fb3d3f6a-17fd-4374-8185-626ed7e54d2a" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+How many appointments are scheduled for each patient?
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT 
+    PatientID,
+    COUNT(AppointmentID) AS TotalAppointments
+    FROM 
+        Appointments
+    GROUP BY
+        PatientID
 ```
 
 **Output:**
 
-![Output3](output.png)
+
+<img width="772" height="662" alt="image" src="https://github.com/user-attachments/assets/902a06a2-c244-47c5-bb75-54853cb25237" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the Fruit with the lowest available quantity.
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT
+    name AS fruit_name,
+    inventory AS lowest_quantity
+FROM fruits
+ORDER BY inventory ASC
+LIMIT 1;
 ```
 
 **Output:**
 
-![Output4](output.png)
+
+<img width="772" height="321" alt="image" src="https://github.com/user-attachments/assets/e2904639-24ca-4e69-9e85-66fac67ffd6d" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to Calculate the average income of the employees with names starting with 'A': 
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT avg(income) as avg_income from employee where name LIKE 'A%'
 ```
 
 **Output:**
 
-![Output5](output.png)
+
+<img width="525" height="313" alt="image" src="https://github.com/user-attachments/assets/e78f38e0-0a2c-47ee-b328-e288b770a6f8" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to calculate total purchase amount of all orders. Return total purchase amount.
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT sum(purch_amt) as TOTAL from orders
 ```
 
 **Output:**
 
-![Output6](output.png)
+
+<img width="382" height="312" alt="image" src="https://github.com/user-attachments/assets/32242e7c-e7b0-4d9c-ba6e-34b6a507ee09" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to return the total number of rows in the 'customer' table where the city is not Noida.
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT
+    COUNT(*) AS COUNT 
+FROM customer 
+WHERE city <> 'Noida';
 ```
 
 **Output:**
 
-![Output7](output.png)
+
+<img width="557" height="328" alt="image" src="https://github.com/user-attachments/assets/31b9e0ca-60f2-4f42-9bc6-f00e131c9d62" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that achieves the grouping of data by city, calculates the total income for each city, and includes only those cities where the total income sum is greater than 200,000.
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT
+    city,
+    SUM(income) AS 'Income'
+FROM employee
+GROUP BY city
+HAVING SUM(income)>200000;
 ```
 
 **Output:**
 
-![Output8](output.png)
+
+<img width="647" height="546" alt="image" src="https://github.com/user-attachments/assets/649a924d-c97b-4855-904e-11c37cfb36ed" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 1,000,000.
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT
+    age,
+    MIN(income) AS 'Income'
+FROM employee
+GROUP BY age
+HAVING MIN(income)<1000000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="677" height="453" alt="image" src="https://github.com/user-attachments/assets/91a2d3f9-c2f0-436f-b4c2-3fd9e9d0aa8d" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 400,000.
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT
+    age,
+    MIN(income) AS "MIN(income)"
+FROM employee
+GROUP BY age
+HAVING MIN(income)<400000;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="683" height="422" alt="image" src="https://github.com/user-attachments/assets/6aef4a8a-bf70-4f72-b36f-1c2e5659d284" />
+
+**Completion status**
+
+<img width="1768" height="228" alt="image" src="https://github.com/user-attachments/assets/cc32fa94-1065-45d9-ae8f-46685230f388" />
+
+
 
 
 ## RESULT
